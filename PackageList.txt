@@ -54,3 +54,6 @@ alacritty
 neofetch
 htop
 wpa_supplicant
+rsync
+dmenu
+
