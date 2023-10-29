@@ -10,6 +10,7 @@ mesa
 mesa-vdpau
 networkmanager
 network-manager-applet
+nm-connection-editor
 blueman
 firewalld
 alsa-card-profiles
