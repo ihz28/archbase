@@ -48,8 +48,8 @@ systemctl enable NetworkManager
 systemctl enable firewalld
 systemctl enable reflector.timer
 systemctl enable fstrim.timer
-
+btrfs subvolume set-def 256 /
 
 echo
 echo "Setup Complete!!"
-echo "Check fstab and remove subvol IDs"
+
