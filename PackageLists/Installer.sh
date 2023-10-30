@@ -16,17 +16,14 @@ echo "127.0.1.1 $hostname.localdomain $hostname" >> /etc/hosts
 reflector --country Australia --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 pacman -Syy
 
-# Setup GRUB bootloader and Nvidia drivers
-pacman -S --noconfirm amd-ucode
-pacman -S --noconfirm grub efibootmgr
-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ArchLinux
-grub-mkconfig -o /boot/grub/grub.cfg
 
 # INSTALL PACKAGES
 pacman -S --noconfirm --needed - < Base.txt
 pacman -S --noconfirm --needed - < Wayland_files.txt
 pacman -S --noconfirm --needed - < fonts_lists.txt
 
+# Setup GRUB bootloader and Nvidia drivers
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ArchLinux
 sed -i '6s/"loglevel=3 quiet"/"loglevel=3 quiet nvidia_drm.modeset=1"/' /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 sed -i '7s/()/(btrfs nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
