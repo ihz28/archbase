@@ -4,3 +4,5 @@ xorg-xkill
 xterm
 xorg-apps
 xorg
+i3
+dmenu
