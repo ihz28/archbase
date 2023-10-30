@@ -34,7 +34,7 @@ echo "Root password"
 passwd
 echo
 echo "Adding user"
-useradd -m -G wheel ihz
+useradd -m -G sys,log,network,floppy,scanner,power,rfkill,users,video,storage,optical,lp,audio,wheel ihz
 passwd ihz
 sed -i '89s/#//' /etc/sudoers
 
