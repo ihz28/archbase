@@ -3,9 +3,6 @@
 # Choose hostname
 read -p 'hostname: ' hostname
 
-reflector --country AU --latest 5 --sort rate --save /etc.pacman.d/mirrorlist
-
-
 # localization and time setting
 ln -sf /usr/share/zoneinfo/Australia/Perth /etc/localtime
 hwclock --systohc
