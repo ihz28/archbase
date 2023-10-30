@@ -48,7 +48,7 @@ systemctl enable NetworkManager
 systemctl enable firewalld
 systemctl enable reflector.timer
 systemctl enable fstrim.timer
-systemctl enable /dev/zram0
+systemctl start /dev/zram0
 
 echo
 echo "Setup Complete!!"
