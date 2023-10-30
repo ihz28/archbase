@@ -4,7 +4,7 @@
 read -p 'hostname: ' hostname
 read -p 'Xorg [1] Wayland [2] : ' choice
 if [[ $choice == 1 ]]; then
-  protocol = Xorg_files.list
+  protocol = Xorg_files.txt
   echo "selected $protocol"
 elif [[ $choice == 2 ]]; then
   protocol = Wayland_files.txt
