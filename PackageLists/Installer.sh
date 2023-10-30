@@ -20,15 +20,17 @@ pacman -Syy
 pacman -S --noconfirm amd-ucode
 pacman -S --noconfirm grub efibootmgr
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ArchLinux
-sed -i '6s/"loglevel=3 quiet"/"loglevel=3 quiet nvidia_drm.modeset=1"/' /etc/default/grub
-grub-mkconfig -o /boot/grub/grub.cfg
-sed -i '7s/()/(btrfs nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
-mkinitcpio -p linux
 
 # INSTALL PACKAGES
 pacman -S --noconfirm --needed - < Base.txt
 pacman -S --noconfirm --needed - < Wayland_files.txt
 pacman -S --noconfirm --needed - < fonts_lists.txt
+
+sed -i '6s/"loglevel=3 quiet"/"loglevel=3 quiet nvidia_drm.modeset=1"/' /etc/default/grub
+grub-mkconfig -o /boot/grub/grub.cfg
+sed -i '7s/()/(btrfs nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
+mkinitcpio -p linux
+
 
 # ADD ROOT & USER
 echo "Root password"
@@ -42,7 +44,6 @@ sed -i '89s/#//' /etc/sudoers
 # SETUP ZRAM
 echo "[zram0]" > /etc/systemd/zram-generator.conf
 echo "zram-size = ram / 2" >> /etc/systemd/zram-generator.conf
-systemctl daemon-reload
 
 # INSTALL YAY
 cd ~
