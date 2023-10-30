@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# Choose hostname and protocol
-protocol = undefined
+# Choose hostname
 read -p 'hostname: ' hostname
 
 # localization and time setting
