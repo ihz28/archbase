@@ -186,5 +186,6 @@ vlc
 zram-generator
 inter-font
 noto-fonts
+nvidia-utils
 nvidia-dkms
 nvidia-settings
