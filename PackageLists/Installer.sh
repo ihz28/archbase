@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Choose hostname and protocol
 read -p 'hostname: ' hostname
 read -p 'Xorg [1] Wayland [2] : ' choice
 if $choice == 1 then
@@ -10,6 +11,7 @@ elif $choice == 2 then
   echo "selected $protocol"
 fi
 
+# localization and time setting
 ln -sf /usr/share/zoneinfo/Australia/Perth /etc/localtime
 hwclock --systohc
 sed -i '171s/#//' /etc/locale.gen
@@ -22,6 +24,7 @@ echo "127.0.1.1 $hostname.localdomain $hostname" >> /etc/hosts
 reflector --country Australia --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 pacman -Syy
 
+# Setup GRUB bootloader and Nvidia drivers
 pacman -S --noconfirm amd-ucode
 pacman -S --noconfirm grub efibootmgr
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ArchLinux
@@ -76,7 +79,6 @@ btrfs subvol set-def 256 /
 echo "default subvolume: "
 btrfs subvol get-default /
 chown -R :wheel /.snapshots
-
 echo
 echo "CREATING FIRST SNAPSHOT..."
 echo
