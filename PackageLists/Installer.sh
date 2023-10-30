@@ -20,6 +20,7 @@ pacman -Syy
 pacman -S --noconfirm amd-ucode
 pacman -S --noconfirm grub efibootmgr
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ArchLinux
+grub-mkconfig -o /boot/grub/grub.cfg
 
 # INSTALL PACKAGES
 pacman -S --noconfirm --needed - < Base.txt
@@ -30,7 +31,6 @@ sed -i '6s/"loglevel=3 quiet"/"loglevel=3 quiet nvidia_drm.modeset=1"/' /etc/def
 grub-mkconfig -o /boot/grub/grub.cfg
 sed -i '7s/()/(btrfs nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
 mkinitcpio -p linux
-
 
 # ADD ROOT & USER
 echo "Root password"
@@ -45,40 +45,6 @@ sed -i '89s/#//' /etc/sudoers
 echo "[zram0]" > /etc/systemd/zram-generator.conf
 echo "zram-size = ram / 2" >> /etc/systemd/zram-generator.conf
 
-# INSTALL YAY
-cd ~
-git clone https://aur.archlinux.org/yay
-cd yay
-yes | makepkg -si
-cd ~
-rm -fr yay
-
-# SETUP SNAPPER
-yay
-yay -S --noconfirm snapper-support
-sed -i  '22s/ALLOW_GROUPS=""/ALLOW_GROUPS="wheel"/' /etc/snapper/configs/root
-sed -i '44s/TIMELINE_CREATE="yes"/TIMELINE_CREATE="no"/' /etc/snapper/configs/root
-sed -i '51s/TIMELINE_LIMIT_HOURLY="10"/TIMELINE_LIMIT_HOURLY="5"/' /etc/snapper/configs/root
-sed -i '52s/TIMELINE_LIMIT_DAILY="10"/TIMELINE_LIMIT_DAILY="5"/' /etc/snapper/configs/root
-sed -i '54s/TIMELINE_LIMIT_MONTHLY="10"/TIMELINE_LIMIT_MONTHLY="0"' /etc/snapper/configs/root
-sed -i '55s/TIMELINE_LIMIT_YEARLY="10"/TIMELINE_LIMIT_YEARLY="0"' /etc/snapper/configs/root
-cd /
-umount /.snapshots
-rm -r /.snapshots
-snapper -c root create-config /
-btrfs subvolume delete /.snapshots
-mkdir /.snapshots
-mount -o compress=zstd:1,noatime,subvol=@snapshots /dev/nvme0n1p2 /.snapshots
-btrfs subvol set-def 256 /
-echo "default subvolume: "
-btrfs subvol get-default /
-chown -R :wheel /.snapshots
-echo
-echo "CREATING FIRST SNAPSHOT..."
-echo
-snapper -c root create -d "***Base Install***"
-grub-mkconfig -o /boot/grub/grub.cfg
-snapper ls
 
 # SERVICES
 systemctl enable NetworkManager
