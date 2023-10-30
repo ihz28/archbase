@@ -53,6 +53,7 @@ echo "zram-size = ram / 2" >> /etc/systemd/zram-generator.conf
 systemctl daemon-reload
 
 # INSTALL YAY
+cd ~
 git clone https://aur.archlinux.org/yay
 cd yay
 yes | makepkg -si
