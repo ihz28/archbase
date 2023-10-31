@@ -33,7 +33,7 @@ sudo
 alacritty
 foot
 nano
-nvim
+neovim
 git
 reflector
 thunar
