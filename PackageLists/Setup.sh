@@ -1,12 +1,5 @@
 #!/bin/bash
 
-git clone https://aur.archlinux.org/yay
-cd yay
-yes | makepkg -si
-yay
-
-yay -S --noconfirm snapper-support
-
 sudo -s
 cd /
 umount /.snapshots
