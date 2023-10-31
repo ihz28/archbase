@@ -1,5 +1,5 @@
 #!/bin/bash
-
+arch-chroot /mnt
 # Choose hostname
 read -p 'hostname: ' hostname
 read -p 'username: ' username
