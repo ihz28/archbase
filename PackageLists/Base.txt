@@ -38,7 +38,4 @@ reflector
 thunar
 firefox
 neofetch
-nvidia-dkms 
-nvidia-utils 
-nvidia-settings
-vulkan-icd-loader
+
