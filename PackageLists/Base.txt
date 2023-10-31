@@ -19,6 +19,7 @@ x264
 x265
 xvidcore
 amd-ucode
+wpa_supplicant
 networkmanager
 network-manager-applet
 nm-connection-editor
@@ -31,5 +32,6 @@ nano
 nvim
 git
 reflector
+thunar
 firefox
 neofetch
