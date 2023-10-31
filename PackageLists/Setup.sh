@@ -1,6 +1,5 @@
 #!/bin/bash
 
-sudo -s
 cd /
 umount /.snapshots
 rm -r /.snapshots
