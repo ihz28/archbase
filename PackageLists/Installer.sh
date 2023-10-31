@@ -25,6 +25,7 @@ pacman -Syu
 # INSTALL PACKAGES
 pacman -S --noconfirm --needed - < Base.txt
 pacman -S --noconfirm --needed - < Xorg_files.txt
+pacman -S --noconfirm --needed - < Nvidia_drivers.txt
 pacman -S --noconfirm --needed - < fonts_lists.txt
 
 # Setup GRUB bootloader and Nvidia drivers
