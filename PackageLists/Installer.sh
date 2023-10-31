@@ -26,7 +26,7 @@ pacman -Syu
 pacman -S --noconfirm --needed - < fonts_lists.txt
 pacman -S --noconfirm --needed - < Base.txt
 pacman -S --noconfirm --needed - < Xorg_files.txt
-pacman -S --noconfirm --needed - < Nvidia_drivers.txt
+pacman -S --noconfirm nvidia-dkms nvidia-utils nvidia-settings vulkan-icd-loader lib32-nvidia-utils lib32-vulkan-icd-loader
 
 # Setup GRUB bootloader and Nvidia drivers
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ArchLinux
