@@ -23,5 +23,5 @@ swapon /dev/nvme0n1p3
 pacstrap -K /mnt base base-devel linux linux-firmware git reflector linux-headers
 genfstab -U /mnt >> /mnt/etc/fstab
 sed -i '/subvolid=/s/subvolid=[^ ,]*,//g' /mnt/etc/fstab
-arch-chroot /mnt 
-./Installer.sh
+arch-chroot /mnt
+
