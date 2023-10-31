@@ -4,9 +4,6 @@
 read -p 'hostname: ' hostname
 read -p 'username: ' username
 
-sed -i '90s/#//' /etc/pacman.conf
-sed -i '91s/#//' /etc/pacman.conf
-
 # localization and time setting
 ln -sf /usr/share/zoneinfo/Australia/Perth /etc/localtime
 hwclock --systohc
