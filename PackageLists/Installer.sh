@@ -16,7 +16,6 @@ echo "::1       localhost" >> /etc/hosts
 echo "127.0.1.1 $hostname.localdomain $hostname" >> /etc/hosts
 reflector --country Australia --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 pacman -Syy
-pacman -Syu
 
 
 # INSTALL PACKAGES
