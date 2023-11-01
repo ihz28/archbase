@@ -20,8 +20,8 @@ mount --mkdir -o compress=zstd,noatime,subvol=@cache /dev/nvme0n1p2 /mnt/var/cac
 mount --mkdir /dev/nvme0n1p1 /mnt/boot/efi
 swapon /dev/nvme0n1p3
 
-pacstrap -K /mnt base base-devel linux linux-firmware git reflector rsync linux-headers btrfs-progs nvidia-dkms nvidia-utils nvidia-settings vulkan-icd-loader lib32-nvidia-utils lib32-vulkan-icd-loader grub efibootmgr
+pacstrap -K /mnt base base-devel linux linux-firmware git reflector rsync linux-headers nano
 genfstab -U /mnt >> /mnt/etc/fstab
 sed -i '/subvolid=/s/subvolid=[^ ,]*,//g' /mnt/etc/fstab
-
+arch-chroot /mnt
 
