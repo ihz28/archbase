@@ -3,6 +3,9 @@
 # Choose hostname
 read -p 'hostname: ' hostname
 read -p 'username: ' username
+sed -i '90s/#//' /etc/pacman.conf
+sed -i '91s/#//' /etc/pacman.conf
+pacman -Sy
 
 # localization and time setting
 ln -sf /usr/share/zoneinfo/Australia/Perth /etc/localtime
@@ -19,9 +22,9 @@ pacman -Syy
 
 
 # INSTALL PACKAGES
-pacman -S --noconfirm --needed - < fonts_lists.txt
-#pacman -S --noconfirm --needed - < Base.txt
+pacman -S --noconfirm --needed - < Base.txt
 pacman -S --noconfirm --needed - < Xorg_files.txt
+pacman -S --noconfirm --needed - < fonts_lists.txt
 
 
 # Setup GRUB bootloader and Nvidia drivers
@@ -29,7 +32,7 @@ grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ArchL
 sed -i '6s/"loglevel=3 quiet"/"loglevel=3 quiet nvidia_drm.modeset=1"/' /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 #sed -i '7s/()/(btrfs nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
-mkinitcpio -p linux
+#mkinitcpio -p linux
 
 # ADD ROOT & USER
 echo "Root password"
@@ -46,11 +49,10 @@ echo "zram-size = ram / 2" >> /etc/systemd/zram-generator.conf
 
 # SERVICES
 systemctl enable NetworkManager
-systemctl enable firewalld
 systemctl enable reflector.timer
 systemctl enable fstrim.timer
 btrfs subvolume set-def 256 /
 
 echo
 echo "Setup Complete!!"
-reboot
+
