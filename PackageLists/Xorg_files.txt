@@ -1,3 +1,4 @@
 xorg-server
 xorg-xinit
 dmenu
+i3
