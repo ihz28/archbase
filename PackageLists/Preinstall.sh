@@ -20,6 +20,7 @@ mount --mkdir -o compress=zstd,noatime,subvol=@cache /dev/nvme0n1p2 /mnt/var/cac
 mount --mkdir /dev/nvme0n1p1 /mnt/boot/efi
 swapon /dev/nvme0n1p3
 
+reflector --country AU --latest 5 --sort rate --save /etc/pacman.d/mirrorlist
 pacstrap -K /mnt base base-devel linux linux-firmware git reflector rsync linux-headers nano
 genfstab -U /mnt >> /mnt/etc/fstab
 sed -i '/subvolid=/s/subvolid=[^ ,]*,//g' /mnt/etc/fstab
