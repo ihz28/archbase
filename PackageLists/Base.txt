@@ -1,5 +1,6 @@
 grub
 efibootmgr
+amd-ucode
 rsync
 alsa-utils
 alsa-card-profiles
@@ -21,7 +22,6 @@ wireplumber
 x264
 x265
 xvidcore
-amd-ucode
 wpa_supplicant
 networkmanager
 network-manager-applet
@@ -43,3 +43,6 @@ nvidia-dkms
 nvidia-utils
 nvidia-settings
 vulkan-icd-loader
+lib32-nvidia-utils
+lib32-vulkan-icd-loader
+zram-generator
