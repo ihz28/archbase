@@ -51,7 +51,6 @@ systemctl enable reflector.timer
 systemctl enable fstrim.timer
 btrfs subvolume set-def 256 /
 
-pacman -S --noconfirm lib32-nvidia-utils lib32-vulkan-icd-loader
 echo
 echo "Setup Complete!!"
 reboot
