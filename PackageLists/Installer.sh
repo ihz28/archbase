@@ -1,5 +1,5 @@
 #!/bin/bash
-arch-chroot /mnt
+
 # Choose hostname
 read -p 'hostname: ' hostname
 read -p 'username: ' username
@@ -29,7 +29,7 @@ pacman -S --noconfirm --needed - < Xorg_files.txt
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ArchLinux
 sed -i '6s/"loglevel=3 quiet"/"loglevel=3 quiet nvidia_drm.modeset=1"/' /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
-sed -i '7s/()/(btrfs nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
+#sed -i '7s/()/(btrfs nvidia nvidia_modeset nvidia_uvm nvidia_drm)/' /etc/mkinitcpio.conf
 mkinitcpio -p linux
 
 # ADD ROOT & USER
